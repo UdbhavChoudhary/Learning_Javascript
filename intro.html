@@ -1,0 +1,217 @@
+<script>
+	console.log('Hello World') // inline comment 
+	/* this is a 
+	multi line comment */
+
+	// data types
+
+	// string: any text
+	//number: any number
+	//undefined: var that hasnt set to be anything
+	//null: nothing
+	//boolean: true or false
+	//symbol: immutable primitive value that is unique
+	//object: can store several key value pairs
+
+	var myName = 'Beau' // var is a label to the data. It can be used thruout the whole program
+	myName = 8 // can reassing
+	// other ways to declare var in js:
+	let ourName = 'freeCodeCamp' // let can only be used within the scope of where it is declared
+	const pi = 3.14 // const is a var that cannot be changed
+
+	var a // declare var
+	var b = 2 // declare and assign var
+	a = 7
+	b = a // contents of a assigned to b
+	console.log(a, b) // allows us to see things in console
+
+	a = 5
+	b = 6
+	c = 'I am a'
+	a = a+1
+	b = b-5
+	c = c+'String!'
+
+	// var name and func name in js are case sensitive
+	// var name starts with lowercase letter
+	// to add a new word to the var just capitalise the first letter
+	var studlyCapVar = 10
+
+	var sum = 10+10
+	console.log(sum)
+	var difference = 10-6
+	console.log(difference)
+	var product = 12.36*8
+	console.log(product)
+	var quotient = 66.45/7.89
+	console.log(quotient)
+
+	var newVar = 7
+	console.log(newVar++) // increments newVar
+	console.log(newVar--) //decrements newVar
+
+	var ourDecimal = 5.7 // a float
+	var myDecimal = 0.007
+	// operations on floats same as ops on int
+	var product = 2.0 * 2.5
+	console.log(product)
+	var quotient = 4.4/2.0
+
+	// finding a remainder
+	var remainder = 11%3 // returns remainder
+	console.log(remainder)
+
+	var x = 4
+	var y = 3.76
+	x += 12    // the same operation can be extendes as -=,*=,/=
+	console.log(x)
+	var x = 4
+	x -= 1
+	console.log(x)
+	var x = 4
+	x *= 3.2
+	console.log(x)
+	var x = 4
+	x /= 2.3
+	console.log(x)
+	y += 4.24
+	console.log(y)
+
+	// declaring str var
+	var firstName = 'Udbhav'
+	var lastName = 'Choudhary'
+
+	// if string contains quote symbol:
+	var myStr = 'I am a "double quotes" string inside "double quotes"' // use both " and '
+	console.log(myStr)
+	// or
+	var myStr = "I am a \"double quoted\" string inside \"double quotes\""
+	console.log(myStr)
+
+	/* Escape sequences in a string:
+	\': escaping single quote
+	\": escaping a double quote
+	\\: ... backslash
+	\n: new line
+	\r: carriage return
+	\t: tab 
+	\b: backspace
+	\f: form feed */
+	console.log('First line \n\t Second line \\\n third line')
+
+	// concatenating strings:
+	var newStr = 'I come first. '+'I come second.'
+	console.log(newStr)
+	newStr = 'I am a Hunter. '
+	newStr += 'I mainly hunt deer.'
+	console.log(newStr)
+
+	// concatenating str with var
+	var newName = 'Udbhav Choudhary'
+	var intro = 'Hello, my name is ' + newName + '. How are you doing?'
+	console.log(intro) 
+
+	// appending var to str
+	var fullName = 'My full name is '
+	fullName += newName
+	console.log(fullName)
+
+	// finding the length of a string
+	var exampleStr = 'My name is Jose Uvuwuewue'
+	console.log(exampleStr.length) // var.length returns length of var
+
+	// bracket notation to access char in str
+	var exampleStr1 = 'I am losing patience'
+	var firstChar = exampleStr1[0] // access char at 0th index of str
+	console.log(firstChar) 
+	var firstChar = exampleStr1[3] // access char at 3rd index of str
+	console.log(firstChar)
+
+	// string immutability
+	// string can be changed but the individual char of the string literal cannot be changed
+	var exampleStr2 = "Yojo's bizzare adventure"
+	// exampleStr2[0] = J this not allowed
+	var exampleStr2 = "Jojo's bizzare adventure" // allowed
+
+	// accessing last letter of string
+	var exampleStr3 = 'I want to learn about blockchain'
+	var lastLetterOfExampleStr3 = exampleStr3[exampleStr3.length - 1]
+	console.log(lastLetterOfExampleStr3)
+
+	// bracket notation to find nth to last char in str
+	var thirdToLastLetterOfExampleStr3 = exampleStr3[exampleStr3.length - 3]
+	console.log(thirdToLastLetterOfExampleStr3)
+
+	// accessing multiple char in a string
+	var tbuc = 'Udbhav ki potty hai badbudaar'
+	console.log(tbuc.substring(0,3)) // substring(n,m) doesnt return m
+
+	// wordBlanks
+	// will try to take input and make a function
+	var myAdjective = window.prompt('Please enter a suitable adjective \n') // window.prompt gives a box to user to add input
+	var myNoun = window.prompt('Please enter a suitable noun \n')
+	var myVerb = window.prompt('Please enter a suitable verb \n')
+	var myAdverb = window.prompt('Please enter a suitable adverb \n')
+
+	function wordBlanks(myNoun, myAdjective, myVerb, myAdverb) {
+		var result = 'The ' + myAdjective + ' '  + myNoun + ' ' + myVerb + ' ' + myAdverb
+		return result
+	}
+	console.log(wordBlanks(myNoun, myAdjective, myVerb, myAdverb))
+
+	// store multiple values within arrays
+	var myFirstJSArray = ['John', 23]; // kinda sim to py lists
+
+	// nested or multidimensional array
+	var tooManyArrays = [['Birth', 0], ['Teenage', 13], ['Adult', 19]]
+
+	// access array data with indexes
+	var exampleArr = [20, 'ashton', 34.89, 50, 60, 70]
+	var firstElement = exampleArr[0]
+	console.log(firstElement)
+	var thirdElement = exampleArr[2]
+	console.log(thirdElement)
+	console.log(exampleArr.slice(1,4)) // returns elements of arr from index 1 upto but not including index 4
+
+	// arrays are mutable
+	var subjects = ['Math', 'Physics', 'Chem', 'PE']
+	subjects[2] = 'Economics'
+	console.log(subjects)
+	/* above in exampleArr and subjects, we are getting the array in console
+	as individual elements and not as an array like []. This is a console 
+	issue and not an issue with the code.*/
+
+	// a solution:
+	console.log(JSON.stringify(subjects))
+	console.log(JSON.stringify(exampleArr.slice(1,4)))
+
+	// access multidimensional arrays with indexes
+	var multiArr = [[1,2,3], [4,5,6], [7,8.9], [[10,11,12],13,14]]
+	console.log(multiArr[0][0]) // access 0th element of 0th element of multiArr
+
+	// manipulate arrays with push()
+	var exampleArr1 = ['Abc', 'def']
+	exampleArr1.push('ghi', ['stop', 'with', 'the', 'letters'])
+	console.log(JSON.stringify(exampleArr1))
+
+	// manipulate arrays with pop()
+	// pop func allows us to remove an item from an array
+	// removes the last element
+	var ourArr = [1,2,3]
+	var removed = ourArr.pop()
+	console.log(removed) // 3
+	console.log(JSON.stringify(ourArr)) // [1,2]
+
+	// manipulate arrays with shift()
+	// same as pop() but removes first element
+	ourArr = [1,2,3]
+	console.log(ourArr.shift())
+	console.log(JSON.stringify(ourArr))
+
+	// manipulate arrays with unshift()
+	// similar to push() but adds to start of array
+	var exampleArr2 = ['Jai', 'Ho']
+	exampleArr2.unshift('vro', ['Bharat', 'Desh'])
+	console.log(JSON.stringify(exampleArr2))
+</script>
+ 
