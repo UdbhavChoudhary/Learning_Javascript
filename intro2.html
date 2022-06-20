@@ -1,0 +1,272 @@
+<script>
+	// return boolean values from functions
+	function isLess(a, b) {
+		if(a<b) {
+			return true
+		}
+		else {
+			return false
+		}
+	}
+	console.log(isLess(12, 13.6))
+	// however, remember that comparison operators always return true or false
+	// so a leaner func could be
+	function isSmartlyLess(x, y) {
+		return x<y
+	}
+	console.log(isSmartlyLess(12,13.6))
+
+	// returning early from functions
+	// you can exit a function under certain conditions at any time using return
+	function abTest(a, b) {
+		if (a<0 || b<0) {
+			return undefined 
+		}
+		return a+b
+
+	}
+	console.log(abTest(2,3))
+	console.log(abTest(2,-3)) // returned early under certain conditions
+
+	// switch statement
+	// can be used instead of chained if else statement
+	// tests a value and sets an answer for that val
+	function caseInSwitch(val) {
+		var answer = "" // we'll compare val to different cases we have
+		switch(val) {
+			case 1:        // basically means if case of val is === 1 then
+            	answer = 'alpha' // set answer to 'alpha'
+            	break // end of the case statement
+            case 2:
+            	answer = 'beta'
+            	break
+            case 3:
+            	answer = 'gamma'
+            	break
+            case 4: 
+            	answer = 'delta'
+            	break // if no break statement, the func will run to next case statement automatically. With break it just goes out of the case statement.
+
+		}
+		return answer
+	}
+	console.log(caseInSwitch(4))
+
+	// default option in switch statement
+	// default option is kind of like else statement 
+	// it is used if something other than usual options is passed through case 
+	// statement
+	function switchOfStuff(fruit) {
+		var option = ""
+		switch(fruit) {
+			case 'a': // initially did not put : so error came. now put
+				option = 'apple'
+				break
+			case 'b':
+				option = 'banana'
+				break
+			case 'c':
+				option = 'canteloupe'
+				break
+			default: // any other except a,b,c will return this
+				option = 'kuch bhi kha le bhai'
+				break
+		}
+		return option
+	}
+	console.log(switchOfStuff('orange')) // initially i just wrote orange w/o '' and that is not a string 
+
+	// multiple identical options in switch statement
+	// sometimes you want a switch statement that gives
+	//same output with multiple input
+	// this can be done by omitting break statement
+	function sameOutputSwitch(input) {
+		var hehe = ""
+		switch(input) {
+			case 1:
+			case 2:
+			case 3:
+				hehe = 'ABC'
+				break
+			case 4:
+			case 5:
+			case 6:
+				hehe = 'DEF'
+				break
+		}
+		return hehe
+	}
+	console.log(sameOutputSwitch(1))
+
+	// replacing if else chains with switch
+	function changeToSwitch(name) {
+		var sentence = ""
+		switch(name) {
+			case 'Bob':
+				sentence = 'Bob Marley'
+				break
+			case 42:
+				sentence = 'is everything'
+				break
+			case 1:
+				sentence = 'there is no #1'
+				break
+			case 99:
+				sentence = 'I got 99 problems but a bitch aint 1'
+				break
+			default:
+				sentence = "You're too smart for me"
+				break
+
+		}
+		return sentence
+	}
+	console.log(changeToSwitch(99))
+	// just realised that i could have used (val, answer) combination in all switch function examples as they have local scope. No need to find new combinations like (name, sentence), (input, hehe).
+
+	// objects
+	// like arrays but instead of indexes, we use properties to access data
+	var ourDog = {'name': 'Camper', 'legs': 4, 'tails': 1, 'friends': ['everything']} // this is an obj
+	// property is wht is before colon - name, legs, tails, friends
+	// values are what is after colon - camper, 4, 1. ['everything']
+	// prop can be any datatype
+	// to access value of property of an obj (2 ways):
+	var testObj = {'hat': 'bowler', 'a shirt': 'Jersey', 'shoes': 42}
+	var hatValue = testObj.hat // dot notation - method 1
+	var shirtValue = testObj['a shirt'] // bracket notation - method 2
+	// bracket notation can be used any time but must be used if property has space in between
+	console.log(hatValue, shirtValue) // returns values
+
+	// accessing values of object properties with variables
+	var testObj1 = {12: 'naman', 16: 'lola', 19: 'unitas'}
+	var playerNumber = 16
+	var playerName = testObj1[playerNumber]
+	console.log(playerName)
+
+	// updating object properties
+	// using dot notation
+	var testObj = {'hat': 'bowler', 'a shirt': 'Jersey', 'shoes': 42}
+	testObj.hat = 'curved bowler'
+	testObj['a shirt'] = 'nike' // oh, can use bracket also
+	console.log(testObj)
+
+	// add new prop to an object
+	// using dot or bracket notation
+	var ourDog = {'name': 'Camper', 'legs': 4, 'tails': 1, 'friends': ['everything']}
+	ourDog.bark = 'bow-wow' // bark is prop and bow-wow is value
+	ourDog['is neutered'] = 'yes'
+	console.log(JSON.stringify(ourDog)) // shows as an object
+
+	// deleting prop from obj
+	var newObj = {'name': 'Udbhav', 'age': 18, 'edu': 'college'}
+	delete newObj.edu // deletes edu prop
+
+	// using objects for lookups
+	// objects can be thot of as a key-value store like a dictionary
+	// can use objects to look up values
+	// switch statement can be replace with obj
+	// that obj can be used for lookup instead of switch
+	function phoneticLookup(value){
+		var result = ""
+		/* switch(value) 
+			case 'alpha':
+			result = 'adams'
+			break
+			case 'bravo':
+			result = 'boston'
+			break
+			case 'charlie':
+			result = 'chicago'
+			break
+			case 'delta':
+			result = 'denver'
+			break
+			case 'echo':
+			result = 'easy'
+			break */
+			var lookup = {'alpha': 'adams', 'bravo': 'boston', 'charlie': 'chicago', 'delta': 'denver', 'echo': 'easy'}
+			result = lookup[value]
+			return result
+		}
+		console.log(phoneticLookup('charlie'))
+
+
+	// testing objects for properties
+	// we can check if an object has a property using the 'myownproperty' method
+
+	var myObj = {'gift': 'pony', 'pet': 'kitten', 'bed': 'sleigh'}
+	function checkObj(checkProp) {
+		if (myObj.hasOwnProperty(checkProp)) {
+			return myObj[checkProp]
+		}
+		else {
+			return 'Not found'
+		}
+	}
+	console.log(checkObj('gift'))
+
+
+	// manipulating complex objects
+	// can store multiple data types in an object
+	var myMusic = [{'artist': 'billy', 'title': 'piano', 'release_year': 1973, 'formats': ['cd', '8t', 'lp'], 'gold': true}, {'name': 'Linda'}]
+
+	// accessing nested objects
+	var myStorage = {'car': {'inside':{'glove box': 'maps', 'passenger seat': 'crumbs'}}, 'outside': {'trunk': 'jack'}}
+	console.log(JSON.stringify(myStorage))
+	console.log(myStorage)
+	console.log(myStorage.car) 
+	console.log(myStorage['outside'])
+	console.log(myStorage.car.inside['glove box'])
+	console.log(myStorage.outside)
+	// line 217 and 218: does it not matter if property has '' or not? 
+	// tested. in line 218 without 'outside', code doesnt work. so i guess
+	// bracket notation needs ''.
+	// maybe should put anyway? 
+
+	// accessing nested arrays
+	var myPlants = [{'type': 'flowers', 'list': ['rose', 'tulip', 'dandelion']}, {'type': 'trees', 'list': ['fir', 'pine', 'birch']}]
+	// to access the 2nd tress
+	//console.log(myPlants['list'[1]]) - wrong initial answer. this is an array
+	 // initially wrote list inst of 'list'
+	console.log(myPlants[1]['list'][1])
+	// or
+	console.log(myPlants[1].list[1])
+
+
+	// 
+
+
+
+
+
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+</script>

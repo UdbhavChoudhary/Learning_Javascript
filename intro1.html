@@ -1,0 +1,230 @@
+<script>
+// functions
+function introductionFunction() {
+	console.log('Hello World')
+}
+introductionFunction() // shows 'Hello World' on console
+
+// passing values to functions with arguments
+function aFunctionThatMaths(a, b) {
+	console.log(a-b)
+}
+aFunctionThatMaths(7,2)
+
+// global scope and functions
+// scope refers to the visibility of a var
+// var which are defined outside a function block have global scope
+// these var can be seen everywhere in javascript code
+// it is possible to declare a variable without using 'var'
+// this can be done inside a function block
+// and when this is done inside the function block, this var has a global scope
+// however if the keyword 'var' is added to the variable inside the func block
+// then the variable is scoped to the func and will basically be undefined to another func
+
+// to understand scope better with code watch the video linked below
+// https://www.youtube.com/watch?v=PkZNo7MFNFg
+// around the 55 min mark
+
+// local scope and functions
+// variables that are defined within the function and/or its arguments have local scope
+// they are only visible within the func  
+// cant be accessed outside the function
+
+// global vs local scope in functions
+// possible to have both local and global var with the same name
+// in this case local var takes precedence over global var
+// code example below
+
+var outerWear = 'tshirt'
+function myOutfit() {
+	var outerWear = 'sweater'
+	return outerWear
+}
+console.log(myOutfit()) // returns sweater
+console.log(outerWear) // accessed outside the function so returns tshirt
+
+// return a value from a function with return
+var newItem = window.prompt('Add the new item to shopping list')
+var alreadyKnownItems = ['Apple', 'Banana', 'Milk', 'Chicken']
+function iAddThingsToShoppingLists() {
+	alreadyKnownItems.push(newItem)
+	return alreadyKnownItems
+	/* first tried to set a new var = alreadyKnownItems.push(newItem)
+	return JSON.stringify(var) */
+}
+console.log(JSON.stringify(iAddThingsToShoppingLists())) // first there was no JSON.stringify
+
+function minusSeven(num) {
+	return num-7
+}
+console.log(minusSeven(34.879583727))
+
+// understanding undefined value returned from a func
+// if a func doesnt have return statement, the return value is undefined 
+var sum = 0
+function addThree() {
+	sum += 3
+}
+console.log(addThree()) // console shows undefined
+
+// assignment with returned value
+var changed = 0
+function change(num) {
+	return (num+5)/3
+}
+changed = change(10)
+
+// stand in line: queues
+// queue is an abstract data structure where items are kept in order
+// new items added to back and old items taken away from front
+// some code to show the functionality of a queue:
+function nextInLine(arr, item) {
+	arr.push(item) // adds new item to the end
+	return arr.shift() // removes and returns first item from arr
+}
+var testArr = [1,2,3,4,5] // to test our function
+console.log('Before: ' + JSON.stringify(testArr)) // to show before condition
+nextInLine(testArr, 6)
+console.log('After: ' + JSON.stringify(testArr)) // to show action of func
+
+// boolean values
+// 2 valuew: true or false
+
+// using conditional logic with if statements
+function ourTrueorFalse(isItTrue) {
+	if(isItTrue) {
+		return 'Yes, its true'
+	}
+	return 'No, its false'
+}
+console.log(ourTrueorFalse(true))
+
+function oldEnoughToDrink(age) {
+	if(age>18) {
+		return 'Yes, they are old enough to drink'
+	}
+	return 'No, they are not old enough to drink'
+}
+console.log(oldEnoughToDrink(34))
+
+// comparison with the equality operator
+function testEquality(choice) {
+	if(choice == 20) {
+		return 'Our number is equal to 20'
+	}
+	return 'Our number is not equal to 20'
+}
+console.log(testEquality(20.0000000000001))
+
+// comparison with the strict equality operator
+// strict equality operator ===
+// difference is that the == attempts to convert both to a common data type
+// while === does not do that
+// 3===3 is true but 3==='3' is false
+// but 3==3 and 3=='3' are both true
+
+function strictComparison(a,b) {
+	if(a===b) {
+		return 'a and b are strictly equal to each other'
+	}
+	return 'a and b are not strictly equal to each other'
+}
+console.log(strictComparison(4, '4'))
+
+// comparison with the inequality operator, !=
+function testInequality(x, y) {
+	if(x!=y) {
+		return 'The 2 numbers are not equal'
+	}
+	return 'The 2 numbers are equal'
+}
+console.log(testInequality(3,6))
+
+// comparison with the strict inequality operator
+// opp of strict equality operator
+function testStrictNotEqual(val) {
+	if (val !== '6') {
+		return 'these values are strictly not equal to each other'
+	}
+	return 'these numbers are strictly equal to each other'
+}
+console.log(testStrictNotEqual(6))
+
+// similar functions can be made for >,<,>=,<=
+
+// comparison with and operator (&&)
+function shouldIWearARaincoat(rainfall, clouds) {
+	if(rainfall>10 && clouds) {
+		return 'You should wear a raincoat'
+	}
+	return 'You dont need to wear a raincoat' // this func not logial
+}
+console.log(shouldIWearARaincoat(12, true))
+
+// comparison with logical or operator (||)
+function shouldILoseWeight(bmi, muscles) {
+	if (bmi>25 || muscles) {
+		return 'You should lose weight'
+	}
+	return 'You dont need to lose weight' // this func not logical
+}
+console.log(shouldILoseWeight(24, true))
+
+// if else statements
+function thisOrThat(hungerLevel) {
+	if (hungerLevel > 10) {
+		return 'Eat some fruit'
+	} else {
+		return "You're not hungry, you're thirsty" 
+	}
+}
+console.log(thisOrThat(8.9))
+
+// else if statements
+function whatsMyGrade(score) {            
+	if(score>=91) {           // if 1st condition met, others not looked at
+		return 'Your grade is A'
+	}
+	else if(91>score>=81) {
+		return 'Your grade is B'
+	}
+	else if(81>score>=71) {
+		return 'Your grade is C'
+	}
+	else {
+		return 'You fail bitch'
+	}
+}
+console.log(whatsMyGrade(34))
+/* > greater than
+< less than
+>= greater than or equal to
+<= less than or equal to */
+
+// golf code
+var names = ['Hole-in-one', 'Eagle', 'Birdie', 'Par', 'Bogey', 'Double Bogey', 'Go Home']
+function golfScore(par, strokes) {
+	if(strokes == 1) {
+		return names[0]
+	}
+	else if(strokes <= par-2) {
+		return names[1]
+	}
+	else if(strokes == par-1) {
+		return names[2]
+	}
+	else if(strokes == par) {
+		return names[3]
+	}
+	else if(stokes == par+1) {
+		return names[4]
+	}
+	else if(strokes == par+2) {
+		return names[5]
+	}
+	else(strokes >= par+3) 
+		return names[6] 
+	  // the {} on line 225 is unexpected, if removed, code works
+}
+console.log(golfScore(5,3))
+</script>
