@@ -1,0 +1,30 @@
+<script>
+	// creating strings using template literals
+	// template literals are a special type of string that makes creating complex strings easier
+	// we use `` to make them
+	const person = {name: 'Zodiac Hasbro', age: 56}
+	const greeting = `Hello, my name is ${person.name}! I am ${person.age} years old.`
+	// back ticks allow us to make multi line strings
+	// ${} allows us to put variables in the string
+	console.log(greeting)
+	// review the challenge after template literals in the video
+
+	// write concise object literal declarations using simple fields
+	// const createPerson = (firstname, age, gender) => {
+		// return {firstname: firstname, age: age, gender: gender }
+	// }
+	// console.log(createPerson('Zodiac Hasbro', 56, 'male'))
+	// however we can see that there are some repititions here
+	// so there is an easier way to do this
+	// so if the key is the name of the variable and value is the value of the variable, then:
+	const createPerson = (firstname, age, gender) => {{firstname, age, gender}}
+	// so JS returns an obj with 3 key value pairs: firstname, age, gender
+
+	// write concise declarative functions
+	// an object can contain a function
+
+
+
+
+
+</script>

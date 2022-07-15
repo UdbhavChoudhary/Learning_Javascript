@@ -1,0 +1,350 @@
+<script>
+	// difference between var and let
+	// we can declare var using let and const as well
+	// let does not allow to declare a variable twice
+	var name = 'Udbhav'
+	console.log(name)
+	var name = 'Uddipt' // we are allowed to set and declare 'name' more than once
+	console.log(name)
+	let age = 9
+	console.log(age)
+	// let age = 7
+	// console.log(age) // error: 'age' has already been declared 
+
+	// this is a good thing because we usually
+	// do not want to declare a var more than once in the same scope
+	// but we can still reset a var declared using let
+	// in case of 'age'
+	age = 7
+	console.log(age)
+
+	// 'use strict'
+	function catTalk() {
+		'use strict' // enables strict mode which catches common mistakes
+		var catName = 'Oliver'
+		var quote = catName + ' says Meow!'
+		return quote
+	}
+	// initially didnt declare catName and quote using var catName, var quote
+	// strict mode pointed out mistake thoroughly
+	console.log(catTalk())
+
+	// scopes of var and let keyword
+	// when var is declared, it is declared globally
+	// or locally if declared inside a function
+    // however, var dec with let has scope limited to the block statement
+    // or expression it was declared in
+    // block is anything inside {}
+
+    // the const keyword
+    // it has all features of let
+    // but you also cannot reassign it
+    // this means const is read only
+    // it is common to use all caps to declare a var when using const
+
+
+    // mutate an array declared with const
+    const s = [5, 7, 2]
+    function editInPlace() {
+    	'use strict'
+    	// we want s = [2,5,7]
+    	s[0] = 2
+    	s[1] = 5
+    	s[2] = 7
+
+    }
+     
+    // initially didnt write editInPlace() and directly did console.log(s)
+    // that resulted in s not changing
+    // which is obv because this function does not return anything
+    // so we have to call it first so that it does its job
+    // what happens if i write 'return s'
+    // ok interesting, i tried that, removed the editInPlace() calling the
+    // func line
+    // but this time the object did not change
+    // why?
+    editInPlace()
+    console.log(s) // this reassigns the attay
+
+    // prevent object mutation
+    // using even const does not protect object, array from mutation
+    // we use something known as object.freeze to do that
+    function freezeObj() {
+    	'use strict'
+    	const MATH_CONSTANTS = {PI: 3.14} // and object
+    
+    // we can change this object by
+    try {
+    	MATH_CONSTANTS.PI = 99
+    } catch(ex) {
+    	console.log(ex)
+    }
+    return MATH_CONSTANTS.PI 
+}
+	console.log(freezeObj()) // returns 99
+	
+	// from line 67, we used try, catch blocks
+	// in this block, the code first tries to do what is in the first part of 
+	// the block
+	// and if there is an error, it goes to the catch part and the error is 
+	// logged
+	// but with a small change, we can prevent our object 
+	// lets see how, with a similar case and just var names changed
+	function actuallyFreezeObj() {
+		'use strict'
+		const MATH_CONSTANTS = {PI: 3.14}
+		Object.freeze(MATH_CONSTANTS)
+
+		try {
+			MATH_CONSTANTS.PI = 99
+		} catch(ex){
+			console.log(ex)
+		}
+		return MATH_CONSTANTS.PI
+	}
+	console.log(actuallyFreezeObj())
+
+	// use arrow functions to write anonymous functions
+	var magic = function() {
+		return new Date()
+	}
+	console.log(magic())
+	// this is an anonymous function since it has no name
+	// whenever we have an anonymous function, we can convert it to an arrow 
+	// function
+	// this makes the function a little quicker to write
+	// here's how
+	var insti = () => {              // this is how
+		return 'BITS Pilani'
+	}
+	console.log(insti())
+	// however this can be shortened even more
+	// if only one value is returned then no need for 'return' or {}
+	
+	 var fullName = () => 'Udbhav Choudhary'
+	 console.log(fullName())
+	// why is this one not working?
+	// the code was var name = function() {
+	//	return 'Udbhav Choudhary'
+	//}
+	// this code works now
+	// i changed the var from name to fullName
+	// idk why this works now tho
+
+	// write arrow functions with parameters
+
+	// var myConcat = function(arr1, arr2) {
+		// return arr1.concat(arr2)
+	// }
+	// to convert this to arrow form
+	var myConcat = (arr1, arr2) => arr1.concat(arr2)
+	console.log(myConcat([1,2], [3,4,5])) 
+
+	// error handling in js
+	// eror handling uses try, catch, finally, throw
+	// try statement allows to test a block of code for errors
+	// catch statement lets u handle the error/logs it
+	// throw statement lets you create custom errors
+	// finally statement lets you execute code after the catch
+	// statement regardless of the result
+
+	try {
+		console.log('start of try runs')
+		unicycle
+		console.log('end of try runs --never reached')
+	} catch(ex) {
+		console.log('error has occured '+ ex.stack) 
+	} finally {
+		console.log('this is always run')
+	}
+	console.log('..then execution continues')
+	// 'ex' used here is a variable, any var can be used. 'err' is common one
+	// so first try statement is executed
+	// line 151 gets executed normally
+	// line 152 is where we get an error because there is nothing in the 
+	// program called unicycle
+	// since error reached, we dont go to line 153
+	// and skip to the 'catch' part
+	// in line 155, we can do just '+ex' as well to simply log the error
+	// the ex.stack just gives some more details about the error
+	// then we go to the 'finally' statement at line 156 and execute the code
+	// try catch can only work when syntax is correct
+
+
+	// array iteration
+	// 8 methods to iterate through an array
+	// iterate means going through the array and doing something with each 
+	// item of the array
+	// 1. for each:
+	// does something for each item of the array
+	var testArr = [1,2,3]
+	testArr.forEach(function(item, index) { 
+		console.log(item, index)})
+	// lists out each item and gives its index
+
+	// 2. map:
+	// takes item from the array, does something to it, and puts that back
+	// in the position of the original item
+	const three = [1,2,3]
+	const doubled = three.map(function(item) {
+		return item*2
+	})
+	console.log(doubled)
+	console.log(three) // not changed
+
+	// 3. filter:
+	// filters out items in an array based on a certain criteria
+	var ints = [1,2,3]
+	var events = ints.filter(function(item) {
+		return item%2 == 0 // checks each item for this
+	}) // those which clear condition end up in events
+	console.log(events)
+
+	// 4. reduce:
+	var sum = testArr.reduce(function(result, item) {
+		return result+item
+	}, 0) // the num at end is initial result
+	// so here we start with 0, then go thru the arr and add 1
+	// we go thru the array again and add 2 to (0+1)
+	// and again and add 3 to (0+1+2)
+	console.log(sum)
+
+	// 5. some:
+	// returns true or false to the question:
+	// does any item in the array satisfy a certain condition?
+	var newArr = [1,2,3,-1,4]
+	var hasNegativeNumbers = newArr.some(function(item) {
+		return item<0 || item>3
+	})
+	console.log(hasNegativeNumbers) // true
+
+	// 6. every:
+	// checks if every item satisfies a condition
+	var everyArr = newArr.every(function(item) {
+		return item>0
+	})
+	console.log(everyArr) // false
+
+	// 7. find:
+	// looks thru the arr to find items which satisy that conditon 
+	// and returns those items
+	var returnGoodItems = newArr.find(function(item) {
+		return item<0 || item>3
+	})
+	console.log(returnGoodItems)
+
+	var objects = [{id: 'a'}, {id: 'b'}, {id: 'c'}]
+	var found = objects.find(function(item) {
+		return item.id === 'b' // go thru each item and see if id=b
+	})
+	console.log(found)
+
+	// 8. findIndex:
+	// same as find, but instead of returning the item it returns the index
+	var indexFound = objects.findIndex(function(item) {
+		return item.id === 'b'
+	})
+	console.log(indexFound) // if index not found, -1 returned
+	// all 8 of these takes functions as arguments to process data
+
+	// writing higher order arrow functions
+	var realNumberArray = [4,5.6,-9.8,3.14,42,6,8.34,-2]
+	// here we will use some of the array iteration methods
+	// lets say we want a function that takes an array and returns:
+	// a new array with the squared values from positive integer items
+	// of the previous array
+	// so first we filter out the items that do not satisy the criteria
+	// then we use map to only have squares
+	// how do we do that
+	var squaredArray = (arr) => {return arr.filter((num) => num>0 && Number.isInteger(num)).map(x => x*x)}
+	console.log(squaredArray(realNumberArray))
+	// returns undefined...something wrong
+	// first we assigned the function to a var 'squaredArray'
+	// then we take our parameter arr
+	// the function should filter the parameter and then square the filtered 
+	// items
+	// filter takes in a function with parameter num which is basically each 
+	// item of the arr
+	// map takes in a function with parameter x which is basically each 
+	// filtered item
+	// filter filters items of arr using a function that returns items that
+	// match a certain criteria
+	// map maps filtered items of the arr using a func that returns the square
+	// of those filtered items
+	// note that filter and map each both use an arrow function
+	// those arrow functions do not have {} or 'return' because we only 
+	// return one thing
+	// dont know why it doesnt work
+	// ok it did work
+	// i did not write 'return' initially, thats why it didnt work
+
+	// default parameters
+	// the function can 
+	function increment(number, value = 1) {
+		return number+value
+	}
+	// what value = 1 does is that if value isnt specified increment is of 1
+	// but the increment value can also be specified
+	console.log(increment(5,2))
+	console.log(increment(5))
+
+	// the rest operator
+	// allows you to create a function that can take a variable number of args
+	// and store them in an array
+	function sum(...args) {
+		return args.reduce((a,b) => a+b, 0)
+	}
+	// what ...args does is that we can put it in as many nums as we want
+	// and it will be converted to an array
+	// all arguments before, ...args will not be put in an array
+	// only 1 ... can be used
+	// so here we are using reduce on arg to sum the array
+	function addition(...args) {
+		var total = 0
+		for(var arg of args) {
+			total += arg
+		}
+		return total
+	}
+	console.log(addition(1,2,3,4,5,6))
+
+	// using the spread operator
+	// [...arr] spread operator allows us to copy an existing array or obj into another array or obj
+	const numbersOne = [1,2,3]
+	const numbersTwo = [4,5,6]
+	const numbersCombined = [...numbersOne, ...numbersTwo]
+	console.log(numbersCombined) // [1,2,3,4,5,6]
+	// it can help us concat
+	const arr1 = [1,2]
+	const arr2 = [3,4]
+	const concarArr = [...arr1, ...arr2]
+	console.log(concarArr)
+	// it can help us copy content of one arr to another
+	// and make changes to the new arr w/o changing the old one
+	// const A = ['a','b','c']
+	// const B = A
+	// B.push('d')
+	// console.log(A)
+	// console.log(B)
+	// this will show that both are changed 
+	// to avoid that
+	const playArr = ['a', 'b', 'c']
+	const playArr1 = [...playArr]
+	playArr1.push('d')
+	console.log(playArr1) 
+	console.log(playArr) // stays same
+	// lets us expand one array into another neatly
+	// const arr = [1,2,3]
+	// const arr1 = [arr, 4,5]
+	// console.log(arr1)
+	// gives [[1,2,3], 4, 5]
+	// but if
+	const playArr2 = [1,2,3]
+	const playArr3 = [...playArr2, 4,5]
+	console.log(playArr3) // gives [1,2,3,4,5]
+	// can be used to combine objects
+	const myVehicle = {brand: 'Ford', model: 'Mustang', colour: 'red'}
+	const updateMyVehicle = {type: 'car', year: '2021', colour: 'yellow'}
+	const myUpdatedVehicle = {...myVehicle, ...updateMyVehicle}
+	console.log(myUpdatedVehicle)
+</script>

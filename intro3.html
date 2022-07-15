@@ -1,0 +1,160 @@
+<script>
+// while loop
+// runs while a condition is true and stops when not true
+var myArray = []
+var i = 0
+while (i<5) {
+	myArray.push(i)
+	i++
+}
+console.log(JSON.stringify(myArray))
+console.log(myArray)
+
+// for loop
+// has a parenthesis after 'for' with 3 diff items:
+// initialization, condition, final expression
+var ourArray = []
+for (var x = 0; x<5; x++) {  // ; necessary here 
+	ourArray.push(x)  // loop runs till x<5 and once false, breaks out of loop
+}
+console.log(JSON.stringify(ourArray))
+
+// odd numbers with for loops
+var oddArray = []
+for (var x = 1; x<10; x+=2) {
+	oddArray.push(x)
+}
+console.log(JSON.stringify(oddArray))
+
+// count backwards with for loop
+var backArray = []
+for (var x = 10; x>0; x--) {
+	backArray.push(x)
+}
+console.log(JSON.stringify(backArray))
+
+// iterate through an array with a for loop
+// to add elements of an array:
+var addArr = [2,3,4,5,6]
+var total = 0
+for (var x = 0; x<addArr.length; x++) {
+	total += addArr[x]
+}
+console.log(total)
+
+// nested for loops
+// can use nested for loop to access elements of nested array
+// let's make a function that multiplies all elements of a nested array
+function multiplyAll(arr) {
+	var product = 1
+	for (var i = 0; i<arr.length; i++) { // accessing elem of large array
+		for (var j = 0; j<arr[i].length; j++) { // accessing elements of subarr
+			product *= arr[i][j] 
+		} 
+
+		
+	}
+	return product
+
+}
+// access ith index, access jth index of ith index...multiply with 1. Continue for i = 0,1,... sequentially. So i = 0:j=0,j=1,...; i=1: j=0, j=1,...;....
+console.log(multiplyAll([[1,2], [3,4], [5,6,7]]))
+
+// do...while loops
+// while loop first checks condition before running code
+// if true then run code within loop if false then dont 
+// do...while loop will run atleast once and then check code
+var testArr = []
+var i = 10
+while (i<5) {
+	testArr.push(i)
+	i++
+}
+console.log(i, JSON.stringify(testArr)) // arr still empty as i=10
+// but if
+do {
+	testArr.push(i)
+	i++
+} while (i<5) // do this loop while this condition is true, after doing loop once
+console.log(i, JSON.stringify(testArr))
+
+// REWATCH RECORD COLLECTION AND PROFILE LOOKUP SECTION OF VIDEO
+
+// generate random fractions
+// using math.random() function
+function randomFraction() {
+	return Math.random()  // Math.random() will always return 0<=x<1
+}
+console.log(randomFraction())
+
+// generate random whole numbers
+// lets create a function that generates random whole numbers between 0 and 19
+function randomWholeNumber() {
+	return Math.floor(Math.random()*20) // Math.floor rounds down to nearest whole number
+}
+console.log(randomWholeNumber())
+
+// generate random whole numbers within a range
+function numberBetweenRange(ourMin, ourMax) {
+	return Math.floor(Math.random()*(ourMax-ourMin+1)) + ourMin // known formula to get number within a range
+}
+console.log(numberBetweenRange(3, 67))
+
+// parseInt function
+// takes a string and returns an integer
+function convertStrToInt(str) {
+	return parseInt(str)
+}
+console.log(convertStrToInt('Hello')) // NaN
+console.log(convertStrToInt('56')) 
+
+// use parseInt function with radix
+// radix specifies the base of the number in a string
+function IntWithRadix(str) {
+	return parseInt(str, 2)
+}
+console.log(IntWithRadix('10011')) // returns 19
+
+// ternary operator
+// what it looks like:
+// condition ? statement-if-condition-true : statement-if-conditon-false
+// basically:
+// condition ? what happens if condition true : what happens if condition false
+function checkEqual(a, b) {
+	if (a===b) {
+		return true
+	}
+	else {
+		return false
+	} 
+}
+// but we can also write
+function shortCheckEqual(a, b) {
+	return a===b ? true : false
+}
+// obv we can just write 'return a===b' and we will get true or false as answer
+// but this is an example
+console.log(checkEqual(5, '5'))
+console.log(shortCheckEqual(5, 5))
+
+// using multiple ternary operators
+function checkSign(num) {
+	return num>0 ? 'positive' : num<0 ? 'negative' : 'zero'
+}
+console.log(checkSign(-34.56))
+// so if num>0 do 'positive', if not, do another ternary operator
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+</script>
